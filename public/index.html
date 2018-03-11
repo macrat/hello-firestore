@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>hello firestore</title>
+
+		<script src="https://unpkg.com/vue" defer></script>
+
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js" defer></script>
+		<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-firestore.js" defer></script>
+
+		<script src="./config.js" defer></script>
+		<script src="./app.js" defer></script>
+		<style>
+			body {
+				margin: 0;
+			}
+			main > div {
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+			h1 {
+				display: inline;
+			}
+			#logout {
+				float: right;
+				background-color: gray;
+				color: white;
+				padding: .3em 1em;
+				cursor: pointer;
+			}
+			textarea {
+				flex: 1 1 0;
+			}
+
+			#auth {
+				width: 100vw;
+				height: 100vh;
+			}
+		</style>
+	</head>
+
+	<body>
+		<main>
+			<div v-if="user !== null">
+				<div>
+					<h1>{{ user.displayName }}'s note</h1>
+					<span id=logout @click=logout>logout</span>
+				</div>
+				<textarea v-model=note @change=upload @input=upload></textarea>
+			</div>
+			<div v-else id=auth>
+				<div id=auth-container></div>
+			</div>
+		</main>
+	</body>
+</html>
